@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "yioneko.vscode-vtsls",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript-next"
+  ]
+}

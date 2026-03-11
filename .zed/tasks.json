@@ -1,0 +1,27 @@
+[
+  {
+    "label": "Lint",
+    "command": "bun run lint",
+    "tags": ["lint"]
+  },
+  {
+    "label": "Lint Fix",
+    "command": "bun run lint:fix",
+    "tags": ["lint"]
+  },
+  {
+    "label": "Format",
+    "command": "bun run format",
+    "tags": ["format"]
+  },
+  {
+    "label": "Format Check",
+    "command": "bun run format:check",
+    "tags": ["format"]
+  },
+  {
+    "label": "Check All (Lint + Format)",
+    "command": "bun run check",
+    "tags": ["lint", "format"]
+  }
+]

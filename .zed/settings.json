@@ -1,0 +1,104 @@
+{
+  "languages": {
+    "TypeScript": {
+      "language_servers": ["vtsls", "eslint"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "prettier": {
+        "allowed": true
+      }
+    },
+    "TSX": {
+      "language_servers": ["vtsls", "eslint"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "prettier": {
+        "allowed": true
+      }
+    },
+    "JavaScript": {
+      "language_servers": ["vtsls", "eslint"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      },
+      "prettier": {
+        "allowed": true
+      }
+    }
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "inlayHints": {
+            "parameterNames": {
+              "enabled": "all"
+            },
+            "parameterTypes": {
+              "enabled": "true"
+            },
+            "variableTypes": {
+              "enabled": "true"
+            },
+            "propertyDeclarationTypes": {
+              "enabled": "true"
+            },
+            "functionLikeReturnTypes": {
+              "enabled": "true"
+            },
+            "enumMemberValues": {
+              "enabled": "true"
+            }
+          },
+          "suggest": {
+            "completeFunctionCalls": true
+          },
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      }
+    },
+    "eslint": {
+      "settings": {
+        "codeActionOnSave": {
+          "enable": true,
+          "mode": "all"
+        },
+        "format": false,
+        "validate": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact"
+        ]
+      }
+    }
+  },
+  "tab_size": 2,
+  "soft_wrap": "editor_width",
+  "preferred_line_length": 80
+}
