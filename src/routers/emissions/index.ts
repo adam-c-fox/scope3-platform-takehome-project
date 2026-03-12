@@ -4,6 +4,9 @@ import MeasureAPI from '@/services/measure/api'
 import { logger } from '@/logger'
 import { DayQuerySchema, MonthQuerySchema, validateQuery } from '../../validators/emissions'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+
+dayjs.extend(utc)
 import type { Response } from 'express';
 
 // -------- HELPER FUNCTIONS --------
@@ -23,7 +26,7 @@ const calculateMetadata = (responses: EmissionsEntry[]): { totalEmissions: numbe
 }
 
 const isDateRangeValid= (dates: string[], res: Response) : boolean => {
-  const today = dayjs().format('YYYY-MM-DD');
+  const today = dayjs.utc().format('YYYY-MM-DD');
   const futureDates = dates.filter((date) => date > today);
 
   if (futureDates.length > 0) {
@@ -68,7 +71,7 @@ router.get('/day', validateQuery(DayQuerySchema), async (req, res) => {
 
   logger.debug({ domain, date }, 'Received /day request')
 
-  if (dayjs(date).isAfter(dayjs().format('YYYY-MM-DD'))) {
+  if (dayjs.utc(date).isAfter(dayjs.utc().format('YYYY-MM-DD'))) {
     res.status(422).json({
       error: 'Date cannot be in the future.'
     });
@@ -95,7 +98,7 @@ router.get('/week', validateQuery(DayQuerySchema), async (req, res) => {
   logger.debug({ domain, date }, 'Received /week request')
 
   const dates = Array.from({ length: 7 }, (_, i) =>
-    dayjs(date).add(i, 'day').format('YYYY-MM-DD')
+    dayjs.utc(date).add(i, 'day').format('YYYY-MM-DD')
   )
   if (!isDateRangeValid(dates, res)) { return; }
 
@@ -124,8 +127,8 @@ router.get('/month', validateQuery(MonthQuerySchema), async (req, res) => {
   }
   logger.debug({ domain, month }, 'Received /month request')
 
-  const dates = Array.from({ length: dayjs(month).daysInMonth() }, (_, i) =>
-    dayjs(month+'-01').add(i, 'day').format('YYYY-MM-DD')
+  const dates = Array.from({ length: dayjs.utc(month).daysInMonth() }, (_, i) =>
+    dayjs.utc(month + '-01').add(i, 'day').format('YYYY-MM-DD')
   )
   if (!isDateRangeValid(dates, res)) { return; }
 
